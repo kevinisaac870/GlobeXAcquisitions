@@ -1,0 +1,34 @@
+$UserList = Import-Csv -Path 'dummy.csv'
+
+foreach($User in $UserList) {
+    $new = @{
+        Name = $User.first + " " + $User.last
+        }
+        Write-Output $new.Name
+    }# Import-Module ActiveDirectory
+# #Declare variables for Title, First Name, and Last Name
+
+# $firstname = "John"
+# $lastname = "Smith"
+# $lat = ""
+# $lon = ""
+
+# #Connect to Active Directory
+
+
+# #Loop through adding multiple employees with AAA in their names
+
+# function Add-User {
+#   Write-Output
+# }
+
+
+# for ($i=1; $i -le 5; $i++) {
+#   New-ADUser -Name "$firstName $lastName" -GivenName, "$firstName" -Surname, "$lastName" -SamAccountName, "$firstName $lastName" -UserPrincipalName "$firstName$lastName'@yourdomain.com'", -Path "OU=Employees, DC=yourdomain, DC=com" -$AccountPassword (ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force) -Enabled $true
+# }
+
+# #Confirm the new users have been added 
+
+# Get-ADUser -Filter {Name -like"AAA"}
+
+# #end 
