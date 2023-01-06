@@ -1,11 +1,17 @@
-$UserList = Import-Csv -Path 'dummy.csv'
+$UserList = Import-Csv -Path 'dummy.csv' #This will be removed or editted later, when we know where/what the csv will be called.
 
 foreach($User in $UserList) {
-    $new = @{
-        Name = $User.first + " " + $User.last
-        }
-        Write-Output $new.Name
-    }# Import-Module ActiveDirectory
+  $new = @{
+      Name = $User.first + " " + $User.last
+      GivenName = $User.first
+      SurName = $User.last
+      SamAccountName = $User.first + " " + $User.last
+      UserPrincipalName = $User.first+$User.last+"@yourdomain.com"
+      Path = "OU=Employees, DC=yourdomain, DC=com"
+      Enabled = $true
+      }
+  Write-Output "NEW USER" @new
+  }
 # #Declare variables for Title, First Name, and Last Name
 
 # $firstname = "John"
