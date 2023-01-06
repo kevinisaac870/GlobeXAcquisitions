@@ -1,40 +1,18 @@
-$UserList = Import-Csv -Path 'dummy.csv' #This will be removed or editted later, when we know where/what the csv will be called.
+Import-Module ActiveDirectory
+
+$UserList = Import-Csv -Path 'C:\Users\gordn\Downloads\new.csv'
 
 foreach($User in $UserList) {
-  $new = @{
-      Name = $User.first + " " + $User.last
-      GivenName = $User.first
-      SurName = $User.last
-      SamAccountName = $User.first + " " + $User.last
-      UserPrincipalName = $User.first+$User.last+"@yourdomain.com"
-      Path = "OU=Employees, DC=yourdomain, DC=com"
-      Enabled = $true
-      }
-  Write-Output "NEW USER" @new
-  }
-# #Declare variables for Title, First Name, and Last Name
-
-# $firstname = "John"
-# $lastname = "Smith"
-# $lat = ""
-# $lon = ""
-
-# #Connect to Active Directory
-
-
-# #Loop through adding multiple employees with AAA in their names
-
-# function Add-User {
-#   Write-Output
-# }
-
-
-# for ($i=1; $i -le 5; $i++) {
-#   New-ADUser -Name "$firstName $lastName" -GivenName, "$firstName" -Surname, "$lastName" -SamAccountName, "$firstName $lastName" -UserPrincipalName "$firstName$lastName'@yourdomain.com'", -Path "OU=Employees, DC=yourdomain, DC=com" -$AccountPassword (ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force) -Enabled $true
-# }
-
-# #Confirm the new users have been added 
-
-# Get-ADUser -Filter {Name -like"AAA"}
-
-# #end 
+    $NewUser = @{
+        Name = $User.first + " " + $User.last
+        GivenName = $User.first
+        SurName = $User.last
+        SamAccountName = $User.first + " " + $User.last
+        Department = $User.department
+        Title = $User.title
+        UserPrincipalName = $new.GivenName.Substring(0,1) + $new.Surname + "@globex.com"
+        Path = "OU=Employees, DC=yourdomain, DC=com"
+        Enabled = $true
+    }
+    Get-ADUser $NewUser
+}
